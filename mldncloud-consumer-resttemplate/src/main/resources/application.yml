@@ -1,0 +1,5 @@
+server:
+  port: 80          # 服务端口
+spring:
+  security:
+    session: stateless  

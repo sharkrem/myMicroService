@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.4.3</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>cn.mldn</groupId>
+	<artifactId>mldncloud</artifactId>
+	<version>0.0.1</version>
+	<packaging>pom</packaging>
+	<name>mldncloud</name>
+	<description>Micro services parent project</description>
+	<properties>
+		<java.version>15</java.version>
+        <jdk.version>15</jdk.version>
+        <spring-boot-dependencies.version>2.4.3</spring-boot-dependencies.version>
+        <spring-cloud-dependencies.version>2020.0.0</spring-cloud-dependencies.version>
+        <mysql-connector-java.version>8.0.18</mysql-connector-java.version>
+        <springloaded.version>1.2.6.RELEASE</springloaded.version>
+	</properties>
+    <dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-dependencies</artifactId>
+            <version>${spring-boot-dependencies.version}</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>${spring-cloud-dependencies.version}</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>cn.mldn</groupId>
+            <artifactId>mldncloud-security</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+    </dependencies>
+    </dependencyManagement>
+    <modules>
+        <module>mldncloud-api</module>
+        <module>mldncloud-dept-service-8001</module>
+        <module>mldncloud-consumer-resttemplate</module>
+        <module>mldncloud-security</module>
+        <module>mldncloud-eureka-7001</module>
+        <module>mldncloud-eureka-server-a</module>
+        <module>mldncloud-eureka-server-b</module>
+        <module>mldncloud-eureka-server-c</module>
+    <module>mldncloud-consumer-ribbon</module>
+    <module>mldncloud-dept-service-8002</module>
+    <module>mldncloud-dept-service-8003</module>
+  </modules>
+      <build>
+        <finalName>mldncloud</finalName>
+       <resources>
+            <resource>
+                <!--加载资源目录-->
+                <directory>src/main/resources</directory>
+                <includes>
+                    <!--加载配置文件-->
+                    <include>**/*.yml</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.tld</include>
+                    <include>**/*.p12</include>
+                    <include>**/*.properties</include>
+                    <!--加载模板文件-->
+                    <include>**/*.html</include>
+                    <!--加载静态文件-->
+                    <include>/static/</include>
+                </includes>
+            </resource>
+            <resource>
+                <!--加载资源目录-->
+                <directory>src/main/view</directory>
+                <includes>
+                    <!--加载模板文件-->
+                    <include>**/*.html</include>
+                    <include>**/*.properties</include>
+                    <!--加载模板文件-->
+                    <include>**/*.html</include>
+                    <!--加载静态文件-->
+                    <include>/static/</include>
+                </includes>
+            </resource>
+     </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <delimiters>
+                      <delimiter>$</delimiter>
+                    </delimiters>
+                </configuration>
+            </plugin>
+
+            <!-- <plugin> 该插件的主要功能是进行项目的打包发布处理 <groupId>org.springframework.boot</groupId> 
+                <artifactId>spring-boot-maven-plugin</artifactId> <configuration> 设置程序执行的主类 
+                <mainClass>cn.mldn.mldnboot.SpringBootStartApplication</mainClass> </configuration> 
+                <executions> <execution> <goals> <goal>repackage</goal> </goals> </execution> 
+                </executions> </plugin> -->
+
+        </plugins>
+
+   </build>
+</project>

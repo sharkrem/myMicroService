@@ -1,0 +1,19 @@
+server:
+  port: 7103                  # 定义运行端口
+eureka:
+  server:
+    eviction-interval-timer-in-ms: 60000
+  client: # 客户端进行Eureka注册的配置
+    serviceUrl:
+      defaultZone: http://edmin:edmin@eureka-a.com:7101/eureka, http://edmin:edmin@eureka-b.com:7102/eureka
+    register-with-eureka: false    # 当前的微服务不注册到eureka之中
+    fetch-registry: false     # 不通过eureka获取注册信息
+  instance:                   # eureak实例定义
+    hostname: eureka-c.com # 定义Eureka实例所在的主机名称
+#spring:
+#  security:                                         # 安全配置
+##    basic: 
+##      enabled: true                                 # 启用SpringSecurity的安全配置项
+#    user:                                           # 用户认证与授权信息
+#      password: admin                               # 认证密码
+#      name: admin                                # 认证用户名

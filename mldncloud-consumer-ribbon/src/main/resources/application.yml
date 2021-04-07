@@ -1,0 +1,15 @@
+server:
+  port: 8099          # 服务端口
+eureka:
+  client:
+     service-url:
+       defaultZone: http://edmin:edmin@eureka-7001.com:7001/eureka
+#     register-with-eureka: true
+#     fetch-registry: true
+spring: 
+  application:
+    name: mldncloud-dept-ribbon
+spring.devtools.livereload.port: 35730
+ribbon:
+  eureka:
+    enabled: false

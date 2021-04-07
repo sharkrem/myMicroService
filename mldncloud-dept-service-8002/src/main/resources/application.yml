@@ -1,0 +1,53 @@
+spring:
+  ########-spring datasource-########
+  datasource:
+     type: com.zaxxer.hikari.HikariDataSource
+     #账号配置
+     jdbc-url: jdbc:mysql://localhost:3306/dept8001?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+     username: root
+     password: a5_#7gvx
+     driver-class-name: com.mysql.cj.jdbc.Driver
+
+     #hikari数据库连接池
+     hikari:
+      pool-name: Retail_HikariCP
+      minimum-idle: 5 #最小空闲连接数量
+      idle-timeout: 180000 #空闲连接存活最大时间，默认600000（10分钟）
+      maximum-pool-size: 10 #连接池最大连接数，默认是10
+      auto-commit: true  #此属性控制从池返回的连接的默认自动提交行为,默认值：true
+      max-lifetime: 1800000 #此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟
+      connection-timeout: 30000 #数据库连接超时时间,默认30秒，即30000
+      connection-test-query: SELECT 1
+mybatis:
+  config-locations: classpath:mybatis/mybatis.cfg.xml
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: cn.mldn.mldnboot.vo
+jpa:                                              # 定义JPA的相关配置项
+    show-sql: true                                # 显示执行的SQL
+server:
+  port: 8002                                     # 服务端口
+
+eureka:
+  client:                                         # 客户端进行Eureka注册的配置
+    service-url:                                  # 定义Eureka服务地址
+      defaultZone: http://edmin:edmin@eureka-7001.com:7001/eureka
+#                    http://edmin:edmin@eureka-a.com:7101/eureka,
+#                    http://edmin:edmin@eureka-b.com:7102/eureka,
+#                    http://edmin:edmin@eureka-c.com:7103/eureka
+  instance:
+    instance-id: dept-8002.com
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 2
+    lease-expiration-duration-in-seconds: 5
+---
+spring:   application:
+    name: mldncloud-dept-service
+---
+info:
+  app.name: mldncloud-dept-service
+  company.name: www.mldn.cn
+  build.artifactiId: $project.artifactId$
+  build.version: $project.version$   
+---
+spring.devtools.livereload.port: 35734       
+    
